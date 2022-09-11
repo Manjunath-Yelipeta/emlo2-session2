@@ -43,3 +43,6 @@ debug: ## Enter debugging mode with pdb
 	# - docs: https://docs.python.org/3/library/pdb.html
 	#
 	python -m pdb src/train.py debug=default
+
+run:
+	docker run -it --volume `pwd`:/workspace/project emlov2-session-02:latest python3 src/train.py experiment=cifar10.yaml
