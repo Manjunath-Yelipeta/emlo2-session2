@@ -32,26 +32,27 @@ _Suggestions are always welcome!_
 
 ## 📌  Changes implemented on the template and the MAKE commands
 
-
-**Code Changes** 
+**Code Changes**
 
 - Timm pretrained model has been integrated, with timm.create_model as target and resnet18 as the model_name
 - CIFAR10 DataModule has been added (cifar10_datamodule.py in src/datamodules, cifar10.yamlin configs/datamodule)
 - The model is trained using the experiment yaml file, cifar10.yaml in configs/experiment.
 
-
 **Makefile**
+
 - The below commands have been added in the Makefile to build the Docker image, mount the the volume to Docker Container and run the train.py.
 
 _build:_
 
-	docker build -t ${IMAGE_NAME} .
- 
+```
+docker build -t ${IMAGE_NAME} .
+```
+
 _run:_
 
-	docker run -it --volume `pwd`:/workspace/project emlov2-session-02:latest python3 src/train.py experiment=cifar10.yaml
-
-
+```
+docker run -it --volume `pwd`:/workspace/project emlov2-session-02:latest python3 src/train.py experiment=cifar10.yaml
+```
 
 ## 📌  Introduction
 
