@@ -30,6 +30,41 @@ _Suggestions are always welcome!_
 
 <br>
 
+## 📌  Changes implemented for Step-wise logging, Optuna Hyperparam tuning and DVC push
+
+**Code Changes**
+
+- The cifar10_optuna.yaml file is configured with optuna sweeper configurations (Hyperparam sweep), tensorboard logging alongside the datamodule and model (resnet18) specifications.
+- In timm_module.py file, step-wise logging has been enabled for training and validation using the option "on_step=True"
+- The validation loss is logged as "hp_metric" in tensorboard.
+- The training is run for 8 trial with 2 epochs in each trial.
+- The best batch_size, learning rate, and optimizer are obtained at the end of training.
+
+- Command used for training the model (Trained in Google colab using GPU)
+
+```
+!python src/train.py -m hparams_search=cifar10_optuna 
+```
+
+- The data and logs folders are pushed to Google Drive using DVC.
+
+```
+!dvc init -f
+
+!git rm -r --cached 'data'
+!dvc add data
+
+!git rm -r --cached 'logs'
+!dvc add logs
+
+!git add .
+!dvc config core.autostage true
+
+!dvc remote add gdrive -f gdrive://<drive id>
+
+!dvc push -r gdrive
+```
+
 ## 📌  Changes implemented on the template and the MAKE commands
 
 **Code Changes**
